@@ -15,11 +15,23 @@ public class Day2Solution extends AdventOfCodeSolution {
         String input = readInputFile("src/main/resources/Day2Input.txt");
         ArrayList<Game> validGames = new ArrayList<>();
 
+        // For Part 2, track the sum of powers of cubes revealed
+        int sumOfPowers = 0;
+
         // Iterate through each game represented by a line of input
         String[] lines = input.split("\n");
         for (String line : lines) {
             // If true, add the game to set the set of valid games
             boolean isValid = true;
+
+            // For Part 2, track the maximum number of cubes revealed for each color
+            HashMap<String, Integer> colorToMax = new HashMap<>(
+                    Map.of(
+                            "red", 1,
+                            "green", 1,
+                            "blue", 1
+                    )
+            );
 
             // first, chop off first part with Game ID
             // e.g. "Game 1: 3 blue, 4 red; 2 green" -> "3 blue, 4 red; 2 green"
@@ -30,8 +42,7 @@ public class Day2Solution extends AdventOfCodeSolution {
             String[] listOfCubeSets = cubesPart.split(";");
 
             // Check each cube set to determine if the game is valid
-            cubeSetsLoop:
-            for (String cubeSet: listOfCubeSets) {
+            for (String cubeSet : listOfCubeSets) {
 
                 // Get each number of cubes revealed for each color
                 // e.g. "3 blue, 4 red" -> ["3 blue", "4 red"]
@@ -41,9 +52,15 @@ public class Day2Solution extends AdventOfCodeSolution {
                 for (String cube : cubes) {
                     String color = cube.trim().split(" ")[1];
                     int number = Integer.parseInt(cube.trim().split(" ")[0]);
+
+                    // Update the maximum number of cubes revealed for each color
+                    if (number > colorToMax.get(color)) {
+                        colorToMax.put(color, number);
+                    }
+
+                    // Check if the number of cubes revealed exceeds the limit for that color
                     if (number > colorToLimit.get(color)) {
                         isValid = false;
-                        break cubeSetsLoop;
                     }
                 }
             }
@@ -55,10 +72,15 @@ public class Day2Solution extends AdventOfCodeSolution {
                 Game game = new Game(gameId);
                 validGames.add(game);
             }
+
+            int power = colorToMax.get("red") * colorToMax.get("green") * colorToMax.get("blue");
+            sumOfPowers += power;
         }
 
         int gameIdSum = validGames.stream().reduce(0, (sum, game) -> sum + game.id, Integer::sum);
-        System.out.println(gameIdSum);
+        System.out.println("Part 1 answer: " + gameIdSum);
+
+        System.out.println("Part 2 answer: " + sumOfPowers);
     }
 }
 
