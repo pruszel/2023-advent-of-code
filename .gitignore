@@ -1,3 +1,6 @@
+# Input provided by Advent of Code website which is technically copyrighted material.
+src/main/resources/*Input.txt
+
 # IntelliJ IDEA
 out/
 !**/src/main/**/out/
