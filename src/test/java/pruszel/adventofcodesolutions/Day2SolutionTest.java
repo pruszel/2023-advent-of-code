@@ -1,3 +1,6 @@
+package pruszel.adventofcodesolutions;
+
+import adventofcodesolutions.Day2Solution;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;

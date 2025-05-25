@@ -1,8 +1,10 @@
+package adventofcodesolutions;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Day2Solution extends AdventOfCodeSolution {
+public class Day2Solution implements AdventOfCodeSolution {
     private static final HashMap<String, Integer> colorToLimit = new HashMap<>(
             Map.of(
                     "red", 12,
@@ -12,7 +14,7 @@ public class Day2Solution extends AdventOfCodeSolution {
     );
 
     public static void main(String[] args) {
-        String input = readInputFile("src/main/resources/Day2Input.txt");
+        String input = AdventOfCodeSolution.readInputFile("src/main/resources/Day2Input.txt");
         ArrayList<Game> validGames = new ArrayList<>();
 
         // For Part 2, track the sum of powers of cubes revealed
@@ -33,8 +35,8 @@ public class Day2Solution extends AdventOfCodeSolution {
                     )
             );
 
-            // first, chop off first part with Game ID
-            // e.g. "Game 1: 3 blue, 4 red; 2 green" -> "3 blue, 4 red; 2 green"
+            // first, chop off first part with pruszel.adventofcodesolutions.Game ID
+            // e.g. "pruszel.adventofcodesolutions.Game 1: 3 blue, 4 red; 2 green" -> "3 blue, 4 red; 2 green"
             String cubesPart = line.split(":")[1].trim();
 
             // Get list of cube sets revealed denoted by semicolon
@@ -67,7 +69,7 @@ public class Day2Solution extends AdventOfCodeSolution {
 
 
             if (isValid) {
-                // Game ID is between "Game " and ":"
+                // pruszel.adventofcodesolutions.Game ID is between "pruszel.adventofcodesolutions.Game " and ":"
                 int gameId = Integer.parseInt(line.split(":")[0].split(" ")[1]);
                 Game game = new Game(gameId);
                 validGames.add(game);
@@ -81,6 +83,21 @@ public class Day2Solution extends AdventOfCodeSolution {
         System.out.println("Part 1 answer: " + gameIdSum);
 
         System.out.println("Part 2 answer: " + sumOfPowers);
+    }
+
+    @Override
+    public void printSolution() {
+
+    }
+
+    @Override
+    public int getPart1Solution(String input) {
+        return 0;
+    }
+
+    @Override
+    public int getPart2Solution(String input) {
+        return 0;
     }
 }
 

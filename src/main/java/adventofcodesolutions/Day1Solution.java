@@ -1,7 +1,9 @@
+package adventofcodesolutions;
+
 import java.util.ArrayList;
 import java.util.Map;
 
-public class Day1Solution extends AdventOfCodeSolution {
+public class Day1Solution {
     private static final Map<String, Integer> numericWordsToDigits = Map.of(
             "zero", 0,
             "one", 1,
@@ -16,7 +18,7 @@ public class Day1Solution extends AdventOfCodeSolution {
     );
 
     public static void main(String[] args) {
-        String input = readInputFile("src/Day1Input.txt");
+        String input = AdventOfCodeSolution.readInputFile("src/main/resources/Day1Input.txt");
 
         // Part 1
         ArrayList<Integer> calibrationValues = getCalibrationValuesUsingDigitsOnly(input);
@@ -118,7 +120,7 @@ public class Day1Solution extends AdventOfCodeSolution {
 
     /**
      * @param str String to search for numeric words
-     * @return IndexAndInteger object or null if no numeric word is found
+     * @return pruszel.adventofcodesolutions.IndexAndInteger object or null if no numeric word is found
      */
     private static IndexAndInteger getFirstNumericWordFromRight(String str) {
         IndexAndInteger first = null;
@@ -131,6 +133,7 @@ public class Day1Solution extends AdventOfCodeSolution {
         }
         return first;
     }
+
 }
 
 record IndexAndInteger(int index, int integer) {}
