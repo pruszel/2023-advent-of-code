@@ -23,6 +23,8 @@ public class Day3SolutionTest extends AbstractAdventOfCodeSolutionTest {
     @Override
     @Test
     public void shouldPrintTheCorrectSumForPart2() {
-        // TODO
+        runSolution();
+        printedOutput = outputStream.toString();
+        assertTrue(printedOutput.contains("81997870"), "Part 2 output is incorrect for input given by AoC website.");
     }
 }
