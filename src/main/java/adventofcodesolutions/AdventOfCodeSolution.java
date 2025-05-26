@@ -6,6 +6,9 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public interface AdventOfCodeSolution {
+    static final boolean debug = java.lang.management.ManagementFactory
+    .getRuntimeMXBean().getInputArguments().toString().contains("-agentlib:jdwp");
+
     void printSolution();
     int getPart1Solution(String input);
     int getPart2Solution(String input);
